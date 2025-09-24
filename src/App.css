@@ -225,9 +225,138 @@
   }
 }
 
+/* Project List Styles - Similar to Employee List */
+.project-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.project-details-section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+/* Project Details Styles */
+.project-details {
+  padding: 0;
+}
+
+.project-details h3 {
+  margin: 0 0 1.5rem 0;
+  color: #374151;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-bottom: 2px solid #10b981;
+  padding-bottom: 0.5rem;
+}
+
+.project-info .info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.75rem;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #10b981;
+  transition: background-color 0.2s ease;
+  margin-bottom: 0.75rem;
+}
+
+.project-info .info-item:hover {
+  background-color: #e5e7eb;
+}
+
+.project-info .info-item .label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-width: 100px;
+}
+
+.project-info .info-item .value {
+  color: #1f2937;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: right;
+  flex: 1;
+  margin-left: 1rem;
+}
+
+/* Special styling for members section */
+.members-section {
+  flex-direction: column;
+  align-items: flex-start !important;
+}
+
+.members-section .label {
+  margin-bottom: 0.5rem;
+}
+
+.members-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.member-tag {
+  background-color: #10b981;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.member-tag:hover {
+  background-color: #059669;
+}
+
+/* Clickable row styling */
+.clickable-row {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clickable-row:hover {
+  background-color: #f0fdf4 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1);
+}
+
+/* Alternative layout for smaller screens */
+@media (max-width: 767px) {
+  .project-info .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .project-info .info-item .value {
+    text-align: left;
+    margin-left: 0;
+  }
+  
+  .members-list {
+    margin-top: 0.5rem;
+  }
+}
+
 /* Responsive Design */
 @media (min-width: 768px) {
-  .employee-list-container {
+  .employee-list-container,
+  .project-list-container {
     flex-direction: row;
     gap: 2rem;
   }
@@ -236,7 +365,8 @@
     flex: 2;
   }
   
-  .employee-details-section {
+  .employee-details-section,
+  .project-details-section {
     flex: 1;
     min-width: 300px;
   }
