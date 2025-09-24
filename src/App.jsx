@@ -1,69 +1,60 @@
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { useState } from 'react'
 import './App.css'
-import EmployeeList from './components/EmployeeList'
-import ProjectList from './components/ProjectList'
+import Login from './components/Login'
+import Dashboard from './components/Dashboard'
+import AdminDashboard from './components/AdminDashboard'
+import { AuthContext, useAuth, AdminRoute } from './contexts/AuthContext.jsx'
+
+// Protected Route Component
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated } = useAuth();
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+};
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('Projects');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'projects':
-        return <ProjectList />;
-      case 'employees':
-        return <EmployeeList />;
-      default:
-        return <ProjectList />;
-    }
+  const login = (userData = null) => {
+    setIsAuthenticated(true);
+    // Set user data with role (in real app, this would come from login response)
+    setUser(userData || { username: 'admin', role: 'admin' });
+  };
+
+  const logout = () => {
+    setIsAuthenticated(false);
+    setUser(null);
   };
 
   return (
-    <>
-      {/* Navigation Buttons */}
-      <div style={{ 
-        display: 'flex', 
-        gap: '10px', 
-        justifyContent: 'center', 
-        padding: '20px',
-        backgroundColor: '#f8f9fa',
-        borderBottom: '1px solid #ddd'
-      }}>
-        <button 
-          onClick={() => setCurrentPage('projects')}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: currentPage === 'doctor' ? '#007bff' : '#6c757d',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '16px'
-          }}
-        >
-          Projects
-        </button>
-        <button 
-          onClick={() => setCurrentPage('employees')}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: currentPage === 'patient' ? '#007bff' : '#6c757d',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '16px'
-          }}
-        >
-          Employees
-        </button>
-      </div>
-
-      {/* Page Content */}
-      <div style={{ padding: '20px' }}>
-        {renderPage()}
-      </div>
-    </>
-  )
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/admin" 
+            element={
+              <ProtectedRoute>
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
+              </ProtectedRoute>
+            } 
+          />
+          <Route path="/" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </Router>
+    </AuthContext.Provider>
+  );
 }
 
 export default App
