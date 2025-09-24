@@ -1,33 +1,67 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import EmployeeList from './components/EmployeeList'
+import ProjectList from './components/ProjectList'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentPage, setCurrentPage] = useState('Projects');
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'projects':
+        return <ProjectList />;
+      case 'employees':
+        return <EmployeeList />;
+      default:
+        return <ProjectList />;
+    }
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+      {/* Navigation Buttons */}
+      <div style={{ 
+        display: 'flex', 
+        gap: '10px', 
+        justifyContent: 'center', 
+        padding: '20px',
+        backgroundColor: '#f8f9fa',
+        borderBottom: '1px solid #ddd'
+      }}>
+        <button 
+          onClick={() => setCurrentPage('projects')}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: currentPage === 'doctor' ? '#007bff' : '#6c757d',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '16px'
+          }}
+        >
+          Projects
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <button 
+          onClick={() => setCurrentPage('employees')}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: currentPage === 'patient' ? '#007bff' : '#6c757d',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '16px'
+          }}
+        >
+          Employees
+        </button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      {/* Page Content */}
+      <div style={{ padding: '20px' }}>
+        {renderPage()}
+      </div>
     </>
   )
 }
