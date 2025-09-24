@@ -14,7 +14,7 @@ const GET_EMPLOYEES = gql`
 
 function EmployeeList() {
     const [selectedUserId, setSelectedUserId] = useState(0);
-    // const [selectedDepartment, setSelectedDepartment] = useState(null);
+    const [selectedDepartment, setSelectedDepartment] = useState('');
     const [employees, setEmployees] = useState([]);
 
     // const { data } = useQuery(GET_EMPLOYEES, { fetchPolicy: 'network-only' });
@@ -35,29 +35,41 @@ function EmployeeList() {
         refetch({ department });
     }
 
-    return <>
-        <h1>Employees</h1>
-        <div>
-            <label htmlFor="departmentDropdown">Filter by Department:</label>
-            <select id="departmentDropdown" name="department" onSelect={() => handleSelectDepartmentEvent() }>
-            <option value="It">It</option>
-            <option value="Finance">Finance</option>
-            </select>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                {employees.map(employee => <TableRow id={employee.id} name={employee.name} onDelete={() => setSelectedUserId(employee.id)} /> )}
-            </tbody>
-        </table>
+    return (
+        <div className="employee-list-container">
+            <h1>Employees</h1>
+            
+            <div className="table-section">
+                <div className="filter-section">
+                    <label htmlFor="departmentDropdown">Filter by Department:</label>
+                    <select id="departmentDropdown" name="department" onChange={(event) => handleSelectDepartmentEvent(event)}>
+                        <option value="">All Department</option>
+                        <option value="IT">IT</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Finance">Finance</option>
+                    </select>
+                </div>
+                
+                <div className="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {employees.map(employee => <TableRow id={employee.id} name={employee.name} onDelete={() => setSelectedUserId(employee.id)} /> )}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-        <EmployeeDetails id={selectedUserId} />
-    </>
+            <div className="employee-details-section">
+                <EmployeeDetails id={selectedUserId} />
+            </div>
+        </div>
+    )
 }
 
 export default EmployeeList;

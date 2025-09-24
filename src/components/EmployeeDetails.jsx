@@ -26,15 +26,58 @@ function EmployeeDetails({ id }) {
         if (data?.employee) setEmployee(data.employee); 
     }, [data]);
 
-    return <>
-        <h1>Employee ID: {employee.id}</h1>
-        <h1>Name: {employee.name}</h1>
-        <h1>Department: {employee.department}</h1>
-        <h1>Title: {employee.title}</h1>
-        <h1>Date of Birth: {employee.dateOfBirth}</h1>
-        <h1>Start Date: {employee.startDate}</h1>
-        <img src={employee.imgUrl} />
-    </>
+    if (!employee.id) {
+        return (
+            <div className="employee-details">
+                <h3>Employee Details</h3>
+                <p className="no-selection">Select an employee to view details</p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="employee-details">
+            <h3>Employee Details</h3>
+            
+            {employee.imgUrl && (
+                <div className="employee-image-container">
+                    <img src={employee.imgUrl} alt={`${employee.name} profile`} className="employee-image" />
+                </div>
+            )}
+            
+            <div className="employee-info">
+                <div className="info-item">
+                    <span className="label">ID:</span>
+                    <span className="value">{employee.id}</span>
+                </div>
+                
+                <div className="info-item">
+                    <span className="label">Name:</span>
+                    <span className="value">{employee.name}</span>
+                </div>
+                
+                <div className="info-item">
+                    <span className="label">Department:</span>
+                    <span className="value">{employee.department}</span>
+                </div>
+                
+                <div className="info-item">
+                    <span className="label">Title:</span>
+                    <span className="value">{employee.title}</span>
+                </div>
+                
+                <div className="info-item">
+                    <span className="label">Date of Birth:</span>
+                    <span className="value">{employee.dateOfBirth}</span>
+                </div>
+                
+                <div className="info-item">
+                    <span className="label">Start Date:</span>
+                    <span className="value">{employee.startDate}</span>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default EmployeeDetails;
