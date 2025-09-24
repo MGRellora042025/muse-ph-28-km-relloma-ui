@@ -894,6 +894,326 @@
   transform: translateY(-1px);
 }
 
+/* Tab Navigation Styles */
+.tab-navigation {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    gap: 0.5rem;
+    padding: 0 2rem;
+}
+
+.tab-button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.tab-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.tab-button.active {
+    background: rgba(255, 255, 255, 0.9);
+    color: #4a5568;
+}
+
+/* My IDs Section Styles */
+.my-ids-section {
+    padding: 2rem;
+}
+
+.security-warning {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    text-align: center;
+    border: 2px solid #fca5a5;
+}
+
+.security-warning h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
+}
+
+.security-warning p {
+    margin: 0;
+    opacity: 0.95;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.priority-notice {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.priority-notice h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.4rem;
+}
+
+.priority-notice p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.user-ids-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.user-id-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-id-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.user-id-card.critical {
+    border-left-color: #dc3545;
+    background: linear-gradient(135deg, #fff5f5, #ffffff);
+}
+
+.user-id-card.high {
+    border-left-color: #fd7e14;
+    background: linear-gradient(135deg, #fff8f0, #ffffff);
+}
+
+.user-id-card.medium {
+    border-left-color: #ffc107;
+    background: linear-gradient(135deg, #fffdf0, #ffffff);
+}
+
+.user-id-card.low {
+    border-left-color: #28a745;
+    background: linear-gradient(135deg, #f0fff4, #ffffff);
+}
+
+.user-id-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.user-id-header h3 {
+    margin: 0;
+    color: #2d3748;
+    font-size: 1.2rem;
+}
+
+.urgency-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.user-id-content {
+    margin-bottom: 1.5rem;
+}
+
+.id-status {
+    margin-bottom: 1rem;
+}
+
+.status-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.status-badge.active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.expired {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.id-dates {
+    margin-bottom: 1rem;
+}
+
+.date-item {
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+}
+
+.expiration-warning {
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.expiration-warning.critical {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.expiration-warning.high {
+    background: #ffeeba;
+    color: #856404;
+}
+
+.expiration-warning.medium {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.expiration-warning.low {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.id-number {
+    color: #718096;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+    background: #f7fafc;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+}
+
+.notification-subscription {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.subscription-checkbox {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    gap: 0.5rem;
+}
+
+.subscription-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cbd5e0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 0.3s ease;
+}
+
+.subscription-checkbox input[type="checkbox"]:checked + .checkmark {
+    background: #4299e1;
+    border-color: #4299e1;
+}
+
+.subscription-checkbox input[type="checkbox"]:checked + .checkmark::after {
+    content: '✓';
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.subscription-text {
+    color: #4a5568;
+    flex: 1;
+}
+
+.subscription-checkbox:hover .checkmark {
+    border-color: #4299e1;
+    transform: scale(1.05);
+}
+
+.user-id-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.renew-button {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.renew-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.view-button, .download-button {
+    background: #4299e1;
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.view-button:hover, .download-button:hover {
+    background: #3182ce;
+    transform: translateY(-2px);
+}
+
+.download-button {
+    background: #38a169;
+}
+
+.download-button:hover {
+    background: #2f855a;
+}
+
+.all-ids-section {
+    padding: 0 2rem;
+}
+
 /* Admin Dashboard Styles */
 .admin-dashboard-container {
   min-height: 100vh;
